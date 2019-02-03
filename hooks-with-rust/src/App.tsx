@@ -1,21 +1,32 @@
-import React, { Component } from "react"
+import React, { Component, FormEvent } from "react"
 import { InputGroup, Button, FormGroup } from "@blueprintjs/core"
 import styles from "./App.module.css"
+import axios from "axios"
 
 class App extends Component {
-  onSubmit = () => {}
+  onSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+    const data = await axios.post("/signup", {
+      username: "3",
+      password: "3"
+    })
+    console.log(data)
+  }
+
   render() {
     return (
       <div className="App">
         <form onSubmit={this.onSubmit} className={styles.signupForm}>
           <FormGroup inline>
-            <InputGroup leftIcon="user" />
+            <InputGroup leftIcon="user" large />
           </FormGroup>
           <FormGroup inline>
-            <InputGroup leftIcon="lock" />
+            <InputGroup leftIcon="lock" large />
           </FormGroup>
           <FormGroup inline>
-            <Button>提交</Button>
+            <Button large type="submit">
+              提交
+            </Button>
           </FormGroup>
         </form>
       </div>
