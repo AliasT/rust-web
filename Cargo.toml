@@ -8,11 +8,12 @@ edition = "2018"
 rocket = "0.4.0"
 serde = "1.0.81"
 serde_derive = "1.0"
+diesel = { version = "1.0.0" }
+dotenv = "0.9.0"
 
-[global]
-template_dir = "templates/"
+
 
 [dependencies.rocket_contrib]
-version = "*"
+version = "0.4.0"
 default-features = false
-features = ["handlebars_templates", "tera_templates", "json"]
+features = ["handlebars_templates", "tera_templates", "json", "diesel_postgres_pool"]

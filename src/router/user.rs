@@ -2,16 +2,14 @@
 use rocket::request::Form;
 use rocket_contrib::json::{Json, JsonValue};
 use std::collections::HashMap;
-
-#[derive(Serialize, FromForm)]
-pub struct User {
-    username: String,
-    password: String,
-}
+use crate::db::user::{User, NewUser};
+use crate::schema::users;
+use diesel;
+use diesel::prelude::*;
 
 #[post("/signup", data="<user>")]
-pub fn signup(user: Form<User>) -> JsonValue {
-  let mut r = HashMap::new();
-  r.insert("m", "hello world");
-  crate::res::SuccessResponse::new(r)
+pub fn signup(conn: crate::DbConn, user: Form<NewUser>) -> JsonValue {
+    NewUser::create(&conn, user.username.clone());
+
+    crate::res::SuccessResponse::new("3")
 }
