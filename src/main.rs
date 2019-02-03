@@ -2,14 +2,17 @@
 
 mod router;
 mod cors;
+mod res;
 
 use rocket_contrib::templates::Template;
 use std::collections::HashMap;
 use rocket::request::Form;
 use rocket::fairing::AdHoc;
 
-#[macro_use]
-extern crate rocket;
+#[macro_use] extern crate serde_derive;
+#[macro_use] extern crate rocket;
+#[macro_use] extern crate rocket_contrib;
+
 
 fn main() {
     rocket::ignite()
