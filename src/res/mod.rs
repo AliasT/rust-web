@@ -1,5 +1,4 @@
-use rocket_contrib::json::{Json, JsonValue,};
-use std::collections::HashMap;
+use rocket_contrib::json::{JsonValue,};
 use serde::Serialize;
 pub struct SuccessResponse {}
 

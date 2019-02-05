@@ -1,6 +1,4 @@
-
 pub mod user;
-
 
 // pub fn establish_connection() -> PgConnection {
 //     dotenv().ok();

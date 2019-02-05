@@ -1,10 +1,8 @@
 
 use crate::schema::users;
-use crate::DbConn;
 use diesel;
 use diesel::RunQueryDsl;
 use diesel::prelude::*;
-use diesel::result::QueryResult;
 
 #[derive(Queryable, FromForm, Serialize)]
 pub struct User {
