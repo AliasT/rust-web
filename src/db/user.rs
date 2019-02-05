@@ -1,8 +1,7 @@
-
 use crate::schema::users;
 use diesel;
-use diesel::RunQueryDsl;
 use diesel::prelude::*;
+use diesel::RunQueryDsl;
 
 #[derive(Queryable, FromForm, Serialize)]
 pub struct User {
@@ -12,10 +11,10 @@ pub struct User {
 }
 
 #[derive(Insertable, FromForm, Serialize, Queryable)]
-#[table_name="users"]
+#[table_name = "users"]
 pub struct NewUser {
     pub username: String,
-    pub nickname: String
+    pub nickname: String,
 }
 
 impl NewUser {
@@ -24,16 +23,15 @@ impl NewUser {
             .values(&user)
             .get_result(conn)
             .expect("Error saving new post")
-  }
+    }
 }
-
 
 impl User {
     pub fn get(conn: &diesel::PgConnection) -> Vec<User> {
         use crate::schema::users::dsl::*;
         users
-        .limit(5)
-        .load::<User>(conn)
-        .expect("Error loading posts")
+            .limit(5)
+            .load::<User>(conn)
+            .expect("Error loading posts")
     }
 }
