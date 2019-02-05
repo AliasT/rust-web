@@ -29,7 +29,8 @@ fn main() {
         // 跨域设置
         .attach(cors::CORS())
         .mount("/api", routes![
-            router::user::signup
+            router::user::signup,
+            router::user::get_all_users
         ])
         .launch();
 }

@@ -13,3 +13,8 @@ pub fn signup(conn: crate::DbConn, user: Form<NewUser>) -> JsonValue {
 
     crate::res::SuccessResponse::new("3")
 }
+
+#[get("/users")]
+pub fn get_all_users(conn: crate::DbConn) -> JsonValue {
+    crate::res::SuccessResponse::new(User::get(&conn))
+}
