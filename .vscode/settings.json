@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   "files.exclude": {
     "**/hooks-with-rust": true
   }

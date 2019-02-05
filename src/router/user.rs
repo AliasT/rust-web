@@ -16,7 +16,7 @@ pub fn signup(conn: crate::DbConn, user: Result<Form<NewUser>, FormError>) -> Js
 	Err(FormDataError::Parse(e, _)) => {
 		match e {
 			FormParseError::Missing(v) => {
-				ErrorResponse::new(format!("{} 不能为空", v.as_str()))
+                ErrorResponse::new(format!("{} 不能为空", v.as_str()))
 			},
 			_ => {
 				ErrorResponse::new("未知错误")
