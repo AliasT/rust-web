@@ -20,10 +20,7 @@ pub struct NewUser {
 
 impl NewUser {
     pub fn create(conn: &diesel::PgConnection, username: String) -> User {
-
-        let new_user = NewUser {
-            username
-        };
+        let new_user = NewUser { username };
         diesel::insert_into(users::table)
             .values(&new_user)
             .get_result(conn)
