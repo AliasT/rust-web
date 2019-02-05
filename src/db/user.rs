@@ -1,8 +1,8 @@
 use crate::schema::users;
+use base64::encode;
 use diesel;
 use diesel::prelude::*;
 use diesel::RunQueryDsl;
-use base64::{encode};
 
 #[derive(Queryable, FromForm, Serialize)]
 pub struct User {
@@ -23,14 +23,14 @@ pub struct NewUser {
 pub struct SignupUser {
     pub username: String,
     pub password: String,
-    pub password_confirmation: String
+    pub password_confirmation: String,
 }
 
 impl NewUser {
     pub fn create(conn: &diesel::PgConnection, user: SignupUser) -> User {
         let new_user = NewUser {
             username: user.username,
-            password: encode(&user.password) ,
+            password: encode(&user.password),
         };
         diesel::insert_into(users::table)
             .values(&new_user)

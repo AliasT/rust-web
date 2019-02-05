@@ -1,8 +1,7 @@
-use crate::db::user::{User, SignupUser, NewUser};
+use crate::db::user::{NewUser, SignupUser, User};
 use crate::res::{ErrorResponse, SuccessResponse};
 use rocket::request::{FormDataError, FormError, FormParseError, LenientForm};
 use rocket_contrib::json::JsonValue;
-
 
 #[post("/signup", data = "<user>")]
 pub fn signup(conn: crate::DbConn, user: Result<LenientForm<SignupUser>, FormError>) -> JsonValue {
