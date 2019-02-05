@@ -6,8 +6,8 @@ use crate::res::SuccessResponse;
 
 #[post("/signup", data="<user>")]
 pub fn signup(conn: crate::DbConn, user: Form<NewUser>) -> JsonValue {
-    NewUser::create(&conn, user.username.clone());
-    SuccessResponse::new("3")
+    let new_user = NewUser::create(&conn, user.into_inner());
+    SuccessResponse::new(new_user)
 }
 
 #[get("/users")]
