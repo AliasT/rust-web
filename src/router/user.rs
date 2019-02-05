@@ -1,11 +1,11 @@
-use crate::db::user::{NewUser, User};
+use crate::db::user::{User, SignupUser, NewUser};
 use crate::res::{ErrorResponse, SuccessResponse};
-use rocket::request::Form;
-use rocket::request::{FormDataError, FormError, FormParseError};
+use rocket::request::{FormDataError, FormError, FormParseError, LenientForm};
 use rocket_contrib::json::JsonValue;
 
+
 #[post("/signup", data = "<user>")]
-pub fn signup(conn: crate::DbConn, user: Result<Form<NewUser>, FormError>) -> JsonValue {
+pub fn signup(conn: crate::DbConn, user: Result<LenientForm<SignupUser>, FormError>) -> JsonValue {
     match user {
         Ok(user_payload) => {
             let new_user = NewUser::create(&conn, user_payload.into_inner());

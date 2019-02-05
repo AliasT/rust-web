@@ -2,6 +2,7 @@ table! {
     users (id) {
         id -> Int4,
         username -> Varchar,
-        nickname -> Varchar,
+        nickname -> Nullable<Varchar>,
+        password -> Varchar,
     }
 }
