@@ -12,9 +12,7 @@ pub fn signup(conn: crate::DbConn, user: Result<LenientForm<SignupUser>, FormErr
         }
         // 字段缺失
         Err(FormDataError::Parse(e, _)) => match e {
-            FormParseError::Missing(v) => {
-                ErrorResponse::uncomplete(String::from(v.as_str()))
-            }
+            FormParseError::Missing(v) => ErrorResponse::uncomplete(String::from(v.as_str())),
             _ => ErrorResponse::unknonw(),
         },
         // 其他错误
