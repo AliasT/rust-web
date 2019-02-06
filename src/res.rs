@@ -20,4 +20,18 @@ impl ErrorResponse {
           "message": data,
         })
     }
+
+    pub fn unknonw() -> JsonValue {
+        json!({
+            "code": 5100,
+            "message": "未知错误",
+        })
+    }
+
+    pub fn uncomplete(v: String) -> JsonValue {
+        json!({
+            "code": 5001,
+            "message": format!("{} 不能为空", v)
+        })
+    }
 }
